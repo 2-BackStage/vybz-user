@@ -1,5 +1,6 @@
 package back.vybz.userservice.busker.domain.mongodb;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
@@ -23,4 +24,10 @@ public class FollowerCount {
     @Field(name = "total_follower_count")
     private Integer totalFollowerCount = 0;
 
+    @Builder
+    public FollowerCount(ObjectId id, String buskerUuid, Integer totalFollowerCount) {
+        this.id = id;
+        this.buskerUuid = buskerUuid;
+        this.totalFollowerCount = totalFollowerCount;
+    }
 }
