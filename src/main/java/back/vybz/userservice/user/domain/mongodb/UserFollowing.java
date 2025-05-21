@@ -1,10 +1,10 @@
-package back.vybz.userservice.busker.domain.mongodb;
+package back.vybz.userservice.user.domain.mongodb;
 
+import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -12,24 +12,22 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Document("follower")
-public class Follower {
+@Document("user_following")
+public class UserFollowing {
 
     @Id
     private ObjectId id;
 
-    // 버스커 uuid
-    @Field(name = "busker_uuid")
-    private String buskerUuid;
+    @Field(name = "user_uuid")
+    private String userUuid;
 
-    // 팔로잉 리스트
     @Field(name = "following")
     private List<Following> following;
 
     @Builder
-    public Follower(ObjectId id, String buskerUuid, List<Following> following) {
+    public UserFollowing(ObjectId id, String userUuid, List<Following> following) {
         this.id = id;
-        this.buskerUuid = buskerUuid;
+        this.userUuid = userUuid;
         this.following = following;
     }
 }
