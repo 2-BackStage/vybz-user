@@ -1,4 +1,4 @@
-package back.vybz.userservice.member.domain.mysql;
+package back.vybz.userservice.user.domain.mysql;
 
 import back.vybz.userservice.common.entity.BaseEntity;
 import jakarta.persistence.*;
@@ -8,10 +8,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_info")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends BaseEntity {
+public class UserInfo extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,18 +49,21 @@ public class User extends BaseEntity {
     @Column(nullable = false, length = 20)
     private UserRole userRole;
 
+    /**
+     * 카테고리 ID
+     * */
+    @Column(name = "category_id")
+    private Long categoryId;
 
     @Builder
-    public User(String userUuid,
-                String profileImageUrl,
-                String nickname,
-                UserStatus userStatus,
-                UserRole userRole) {
+    public UserInfo(Long id, String userUuid, String profileImageUrl, String nickname, UserStatus userStatus, UserRole userRole, Long categoryId) {
+        this.id = id;
         this.userUuid = userUuid;
         this.profileImageUrl = profileImageUrl;
         this.nickname = nickname;
         this.userStatus = userStatus;
         this.userRole = userRole;
+        this.categoryId = categoryId;
     }
 
 }

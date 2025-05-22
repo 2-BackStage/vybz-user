@@ -1,4 +1,4 @@
-package back.vybz.userservice.member.domain.mysql;
+package back.vybz.userservice.user.domain.mysql;
 
 import back.vybz.userservice.common.entity.BaseEntity;
 import jakarta.persistence.*;

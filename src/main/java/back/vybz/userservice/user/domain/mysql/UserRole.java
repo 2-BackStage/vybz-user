@@ -1,4 +1,4 @@
-package back.vybz.userservice.member.domain.mysql;
+package back.vybz.userservice.user.domain.mysql;
 
 import lombok.Getter;
 
