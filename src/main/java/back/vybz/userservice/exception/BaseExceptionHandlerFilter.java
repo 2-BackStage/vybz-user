@@ -1,18 +1,18 @@
 package back.vybz.userservice.exception;
 
+import back.vybz.userservice.common.entity.BaseResponseEntity;
+import back.vybz.userservice.common.entity.BaseResponseStatus;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starbucks.back.common.entity.BaseResponseEntity;
-import com.starbucks.back.common.entity.BaseResponseStatus;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.security.sasl.AuthenticationException;
 import java.io.IOException;
 
 @Slf4j

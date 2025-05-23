@@ -1,11 +1,10 @@
 package back.vybz.userservice.exception;
 
-import com.starbucks.back.common.entity.BaseResponseEntity;
-import com.starbucks.back.common.entity.BaseResponseStatus;
+import back.vybz.userservice.common.entity.BaseResponseEntity;
+import back.vybz.userservice.common.entity.BaseResponseStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,19 +23,6 @@ public class BaseExceptionHandler {
     protected ResponseEntity<BaseResponseEntity<Void>> BaseError(BaseException e) {
         BaseResponseEntity<Void> response = new BaseResponseEntity<>(e.getStatus());
         log.error("BaseException -> {}({})", e.getStatus(), e.getStatus().getMessage(), e);
-        return new ResponseEntity<>(response, response.httpStatus());
-    }
-
-    /**
-     * security 인증 에러
-     * 아이디가 없거나 비밀번호가 틀린 경우 AuthenticationManager 에서 발생
-     *
-     * @return FAILED_TO_LOGIN 에러 response
-     */
-    @ExceptionHandler(BadCredentialsException.class)
-    protected ResponseEntity<BaseResponseEntity<Void>> handleBadCredentialsException(BadCredentialsException e) {
-        BaseResponseEntity<Void> response = new BaseResponseEntity<>(BaseResponseStatus.FAILED_TO_LOGIN);
-        log.error("BadCredentialsException: ", e);
         return new ResponseEntity<>(response, response.httpStatus());
     }
 

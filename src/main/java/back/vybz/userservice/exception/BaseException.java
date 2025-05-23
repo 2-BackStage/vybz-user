@@ -1,6 +1,6 @@
 package back.vybz.userservice.exception;
 
-import com.starbucks.back.common.entity.BaseResponseStatus;
+import back.vybz.userservice.common.entity.BaseResponseStatus;
 import lombok.Getter;
 
 @Getter
