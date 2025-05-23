@@ -20,7 +20,7 @@ public class UserAgreement extends BaseEntity {
     /**
      * 회원 UUID
      */
-    @Column(nullable = false, length = 255)
+    @Column(name = "user_uuid", nullable = false, length = 255)
     private String userUuid;
 
     /**
@@ -33,14 +33,15 @@ public class UserAgreement extends BaseEntity {
     /**
      * 약관 동의 여부
      */
-    private Boolean check;
+    @Column(name = "agreed", nullable = false)
+    private Boolean agreed;
 
     @Builder
     public UserAgreement(String userUuid,
                          Agreement agreement,
-                         Boolean check) {
+                         Boolean agreed) {
         this.userUuid = userUuid;
         this.agreement = agreement;
-        this.check = check;
+        this.agreed = agreed;
     }
 }
