@@ -53,7 +53,13 @@ public enum BaseResponseStatus {
     /**
      * Request 유효성 에러
      */
-    INVALID_REQUEST(HttpStatus.BAD_REQUEST, false, 1000, "잘못된 요청입니다.");
+    INVALID_REQUEST(HttpStatus.BAD_REQUEST, false, 1000, "잘못된 요청입니다."),
+
+    /**
+     * 카테고리 에러
+     */
+    DUPLICATE_CATEGORY(HttpStatus.BAD_REQUEST, false, 1100, "중복된 카테고리입니다."),
+    NO_EXIST_CATEGORY(HttpStatus.BAD_REQUEST, false, 1101, "존재하지 않는 카테고리입니다.");
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;
