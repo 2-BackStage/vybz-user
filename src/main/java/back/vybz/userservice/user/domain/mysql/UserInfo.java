@@ -1,6 +1,7 @@
 package back.vybz.userservice.user.domain.mysql;
 
 import back.vybz.userservice.common.entity.BaseEntity;
+import back.vybz.userservice.common.entity.SoftDeletableEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "user_info")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserInfo extends BaseEntity {
+public class UserInfo extends SoftDeletableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,38 +33,14 @@ public class UserInfo extends BaseEntity {
     /**
      * 회원 별칭
      * */
-    @Column(nullable = false, length = 15)
+    @Column(name = "nickname", nullable = false, length = 15)
     private String nickname;
 
-    /**
-     * 회원 상태
-     * */
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private UserStatus userStatus;
-
-    /**
-     * 회원 역할
-     * */
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private UserRole userRole;
-
-    /**
-     * 카테고리 ID
-     * */
-    @Column(name = "category_id")
-    private Long categoryId;
-
     @Builder
-    public UserInfo(Long id, String userUuid, String profileImageUrl, String nickname, UserStatus userStatus, UserRole userRole, Long categoryId) {
-        this.id = id;
+    public UserInfo(String userUuid, String profileImageUrl, String nickname) {
         this.userUuid = userUuid;
         this.profileImageUrl = profileImageUrl;
         this.nickname = nickname;
-        this.userStatus = userStatus;
-        this.userRole = userRole;
-        this.categoryId = categoryId;
     }
 
 }
