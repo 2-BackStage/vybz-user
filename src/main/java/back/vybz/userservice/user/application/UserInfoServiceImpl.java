@@ -50,8 +50,8 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public List<ResponseUserInfoListDto> getAllUserInfo() {
-        List<UserInfo> userInfo = userInfoRepository.findAll();
-        return userInfo.stream()
+        return userInfoRepository.findAll()
+                .stream()
                 .map(ResponseUserInfoListDto::from)
                 .toList();
     }
