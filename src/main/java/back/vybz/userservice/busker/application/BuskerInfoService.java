@@ -4,7 +4,6 @@ import back.vybz.userservice.busker.dto.request.RequestAddBuskerInfoDto;
 import back.vybz.userservice.busker.dto.request.RequestDeleteBuskerInfoDto;
 import back.vybz.userservice.busker.dto.request.RequestUpdateBuskerInfoDto;
 import back.vybz.userservice.busker.dto.response.ResponseBuskerInfoDto;
-import back.vybz.userservice.busker.dto.response.ResponseBuskerInfoListDto;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public interface BuskerInfoService {
     /**
      * 모든 버스커 정보 조회
      */
-    List<ResponseBuskerInfoListDto> getAllBuskerInfo();
+    List<ResponseBuskerInfoDto> getAllBuskerInfo();
 
     /**
      * 버스커 정보 수정

@@ -5,11 +5,9 @@ import back.vybz.userservice.busker.dto.request.RequestAddBuskerInfoDto;
 import back.vybz.userservice.busker.dto.request.RequestDeleteBuskerInfoDto;
 import back.vybz.userservice.busker.dto.request.RequestUpdateBuskerInfoDto;
 import back.vybz.userservice.busker.dto.response.ResponseBuskerInfoDto;
-import back.vybz.userservice.busker.dto.response.ResponseBuskerInfoListDto;
 import back.vybz.userservice.busker.vo.request.RequestAddBuskerInfoVo;
 import back.vybz.userservice.busker.vo.request.RequestDeleteBuskerInfoVo;
 import back.vybz.userservice.busker.vo.request.RequestUpdateBuskerInfoVo;
-import back.vybz.userservice.busker.vo.response.ResponseBuskerInfoListVo;
 import back.vybz.userservice.busker.vo.response.ResponseBuskerInfoVo;
 import back.vybz.userservice.common.entity.BaseResponseEntity;
 import back.vybz.userservice.common.entity.BaseResponseStatus;
@@ -53,10 +51,10 @@ public class BuskerInfoController {
      */
     @Operation(summary = "모든 버스커 정보 조회 API", description = "모든 버스커 정보 조회 API 입니다.", tags = {"Busker-Service"})
     @GetMapping("/list")
-    public BaseResponseEntity<List<ResponseBuskerInfoListVo>> getAllBuskerInfo() {
-        List<ResponseBuskerInfoListVo> responseBuskerInfoListVo = buskerInfoService.getAllBuskerInfo()
+    public BaseResponseEntity<List<ResponseBuskerInfoVo>> getAllBuskerInfo() {
+        List<ResponseBuskerInfoVo> responseBuskerInfoListVo = buskerInfoService.getAllBuskerInfo()
                 .stream()
-                .map(ResponseBuskerInfoListDto::toVo)
+                .map(ResponseBuskerInfoDto::toVo)
                 .toList();
         return new BaseResponseEntity<>(responseBuskerInfoListVo);
     }

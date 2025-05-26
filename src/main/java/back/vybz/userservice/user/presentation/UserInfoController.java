@@ -7,11 +7,9 @@ import back.vybz.userservice.user.dto.request.RequestAddUserInfoDto;
 import back.vybz.userservice.user.dto.request.RequestDeleteUserInfoDto;
 import back.vybz.userservice.user.dto.request.RequestUpdateUserInfoDto;
 import back.vybz.userservice.user.dto.response.ResponseUserInfoDto;
-import back.vybz.userservice.user.dto.response.ResponseUserInfoListDto;
 import back.vybz.userservice.user.vo.request.RequestAddUserInfoVo;
 import back.vybz.userservice.user.vo.request.RequestDeleteUserInfoVo;
 import back.vybz.userservice.user.vo.request.RequestUpdateUserInfoVo;
-import back.vybz.userservice.user.vo.response.ResponseUserInfoListVo;
 import back.vybz.userservice.user.vo.response.ResponseUserInfoVo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -53,10 +51,10 @@ public class UserInfoController {
      */
     @Operation(summary = "모든 유저 정보 조회 API", description = "모든 유저 정보 조회 API 입니다.", tags = {"User-Service"})
     @GetMapping("/list")
-    public BaseResponseEntity<List<ResponseUserInfoListVo>> getAllUserInfo() {
-        List<ResponseUserInfoListVo> responseUserInfoListVo = userInfoService.getAllUserInfo()
+    public BaseResponseEntity<List<ResponseUserInfoVo>> getAllUserInfo() {
+        List<ResponseUserInfoVo> responseUserInfoListVo = userInfoService.getAllUserInfo()
                 .stream()
-                .map(ResponseUserInfoListDto::toVo)
+                .map(ResponseUserInfoDto::toVo)
                 .toList();
         return new BaseResponseEntity<>(responseUserInfoListVo);
     }

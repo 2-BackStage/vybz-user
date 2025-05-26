@@ -4,7 +4,6 @@ import back.vybz.userservice.user.dto.request.RequestAddUserInfoDto;
 import back.vybz.userservice.user.dto.request.RequestDeleteUserInfoDto;
 import back.vybz.userservice.user.dto.request.RequestUpdateUserInfoDto;
 import back.vybz.userservice.user.dto.response.ResponseUserInfoDto;
-import back.vybz.userservice.user.dto.response.ResponseUserInfoListDto;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public interface UserInfoService {
     /**
      * 모든 유저 정보 조회
      */
-    List<ResponseUserInfoListDto> getAllUserInfo();
+    List<ResponseUserInfoDto> getAllUserInfo();
 
     /**
      * 유저 정보 수정

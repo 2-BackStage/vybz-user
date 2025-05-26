@@ -7,7 +7,6 @@ import back.vybz.userservice.user.dto.request.RequestAddUserInfoDto;
 import back.vybz.userservice.user.dto.request.RequestDeleteUserInfoDto;
 import back.vybz.userservice.user.dto.request.RequestUpdateUserInfoDto;
 import back.vybz.userservice.user.dto.response.ResponseUserInfoDto;
-import back.vybz.userservice.user.dto.response.ResponseUserInfoListDto;
 import back.vybz.userservice.user.infrastructure.UserInfoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -49,10 +48,10 @@ public class UserInfoServiceImpl implements UserInfoService {
      * 모든 유저 정보 조회
      */
     @Override
-    public List<ResponseUserInfoListDto> getAllUserInfo() {
+    public List<ResponseUserInfoDto> getAllUserInfo() {
         return userInfoRepository.findAll()
                 .stream()
-                .map(ResponseUserInfoListDto::from)
+                .map(ResponseUserInfoDto::from)
                 .toList();
     }
 
