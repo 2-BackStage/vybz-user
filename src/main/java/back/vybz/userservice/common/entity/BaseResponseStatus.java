@@ -59,7 +59,13 @@ public enum BaseResponseStatus {
      * 카테고리 에러
      */
     DUPLICATE_CATEGORY(HttpStatus.BAD_REQUEST, false, 1100, "중복된 카테고리입니다."),
-    NO_EXIST_CATEGORY(HttpStatus.BAD_REQUEST, false, 1101, "존재하지 않는 카테고리입니다.");
+    NO_EXIST_CATEGORY(HttpStatus.BAD_REQUEST, false, 1101, "존재하지 않는 카테고리입니다."),
+
+    /**
+     * 유저 정보 에러
+     */
+    DUPLICATE_USER(HttpStatus.BAD_REQUEST, false, 1200, "이미 존재하는 회원입니다."),
+    NO_EXIST_USER(HttpStatus.BAD_REQUEST, false, 1201, "존재하지 않는 회원입니다.");
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;
