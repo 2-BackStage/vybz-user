@@ -5,7 +5,6 @@ import back.vybz.userservice.busker.dto.request.RequestAddBuskerInfoDto;
 import back.vybz.userservice.busker.dto.request.RequestDeleteBuskerInfoDto;
 import back.vybz.userservice.busker.dto.request.RequestUpdateBuskerInfoDto;
 import back.vybz.userservice.busker.dto.response.ResponseBuskerInfoDto;
-import back.vybz.userservice.busker.dto.response.ResponseBuskerInfoListDto;
 import back.vybz.userservice.busker.infrastructure.BuskerInfoRepository;
 import back.vybz.userservice.common.entity.BaseResponseStatus;
 import back.vybz.userservice.exception.BaseException;
@@ -49,10 +48,10 @@ public class BuskerInfoServiceImpl implements BuskerInfoService {
      * 모든 버스커 정보 조회
      */
     @Override
-    public List<ResponseBuskerInfoListDto> getAllBuskerInfo() {
+    public List<ResponseBuskerInfoDto> getAllBuskerInfo() {
         return buskerInfoRepository.findAllByDeletedFalse()
                 .stream()
-                .map(ResponseBuskerInfoListDto::from)
+                .map(ResponseBuskerInfoDto::from)
                 .toList();
     }
 

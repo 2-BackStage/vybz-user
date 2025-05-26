@@ -71,7 +71,15 @@ public enum BaseResponseStatus {
      * 버스커 정보 에러
      */
     DUPLICATE_BUSKER(HttpStatus.BAD_REQUEST, false, 1300, "이미 존재하는 버스커입니다."),
-    NO_EXIST_BUSKER(HttpStatus.BAD_REQUEST, false, 1301, "존재하지 않는 버스커입니다.");
+    NO_EXIST_BUSKER(HttpStatus.BAD_REQUEST, false, 1301, "존재하지 않는 버스커입니다."),
+
+    /**
+     * 버스커 그룹 에러
+     */
+    DUPLICATE_BUSKER_GROUP(HttpStatus.BAD_REQUEST, false, 1400, "이미 존재하는 버스커 그룹입니다."),
+    NO_EXIST_BUSKER_GROUP(HttpStatus.BAD_REQUEST, false, 1401, "존재하지 않는 버스커 그룹입니다."),
+    DUPLICATE_BUSKER_MEMBER(HttpStatus.BAD_REQUEST, false, 1402, "이미 존재하는 버스커 멤버입니다."),
+    NO_EXIST_BUSKER_MEMBER(HttpStatus.BAD_REQUEST, false, 1403, "존재하지 않는 버스커 멤버입니다.");
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;

@@ -1,5 +1,6 @@
 package back.vybz.userservice.busker.domain.mysql;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
