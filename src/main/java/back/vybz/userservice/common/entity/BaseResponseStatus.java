@@ -65,7 +65,13 @@ public enum BaseResponseStatus {
      * 유저 정보 에러
      */
     DUPLICATE_USER(HttpStatus.BAD_REQUEST, false, 1200, "이미 존재하는 회원입니다."),
-    NO_EXIST_USER(HttpStatus.BAD_REQUEST, false, 1201, "존재하지 않는 회원입니다.");
+    NO_EXIST_USER(HttpStatus.BAD_REQUEST, false, 1201, "존재하지 않는 회원입니다."),
+
+    /**
+     * 버스커 정보 에러
+     */
+    DUPLICATE_BUSKER(HttpStatus.BAD_REQUEST, false, 1300, "이미 존재하는 버스커입니다."),
+    NO_EXIST_BUSKER(HttpStatus.BAD_REQUEST, false, 1301, "존재하지 않는 버스커입니다.");
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;

@@ -1,6 +1,8 @@
 package back.vybz.userservice.busker.domain.mysql;
 
+import back.vybz.userservice.common.entity.SoftDeletableEntity;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "busker_info")
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
-public class BuskerInfo {
+public class BuskerInfo extends SoftDeletableEntity {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
@@ -38,5 +40,13 @@ public class BuskerInfo {
     @Column(name = "category_id", nullable = false)
     private Long categoryId;
 
+    @Builder
+    public BuskerInfo(Long id, String userUuid, String profileImageUrl, String nickname, Long categoryId) {
+        this.id = id;
+        this.userUuid = userUuid;
+        this.profileImageUrl = profileImageUrl;
+        this.nickname = nickname;
+        this.categoryId = categoryId;
+    }
 
 }
