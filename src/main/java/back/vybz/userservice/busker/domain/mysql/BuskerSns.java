@@ -1,6 +1,6 @@
 package back.vybz.userservice.busker.domain.mysql;
 
-import back.vybz.userservice.common.entity.BaseEntity;
+import back.vybz.userservice.common.entity.SoftDeletableEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "busker_sns")
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
-public class BuskerSns extends BaseEntity {
+public class BuskerSns extends SoftDeletableEntity {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
@@ -27,6 +27,10 @@ public class BuskerSns extends BaseEntity {
      */
     @Column(name = "sns_url", nullable = false)
     private String snsUrl;
+
+    public void updateSnsUrl(String snsUrl) {
+        this.snsUrl = snsUrl;
+    }
 
     @Builder
     public BuskerSns(Long id, String userUuid, String snsUrl) {
