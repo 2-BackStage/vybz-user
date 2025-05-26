@@ -73,7 +73,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     @Override
     public void updateCategory(RequestUpdateCategoryDto requestUpdateCategoryDto) {
-        categoryRepository.save(requestUpdateCategoryDto.updateEntity());
+        Category category = categoryRepository.findById(requestUpdateCategoryDto.getId())
+                .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_CATEGORY));
+        categoryRepository.save(requestUpdateCategoryDto.updateEntity(category));
     }
 
     /**
