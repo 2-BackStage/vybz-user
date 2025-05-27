@@ -92,7 +92,9 @@ public enum BaseResponseStatus {
      */
     DUPLICATE_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1600, "이미 존재하는 약관입니다."),
     NO_EXIST_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1601, "존재하지 않는 약관입니다."),
-    NO_EXIST_AGREEMENT_TYPE(HttpStatus.BAD_REQUEST, false, 1602, "존재하지 않는 약관 종류입니다.");
+    NO_EXIST_AGREEMENT_TYPE(HttpStatus.BAD_REQUEST, false, 1602, "존재하지 않는 약관 종류입니다."),
+    ALREADY_AGREED(HttpStatus.BAD_REQUEST, false, 1603, "이미 동의한 약관입니다."),
+    NO_EXIST_USER_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1604, "존재하지 않는 유저 약관입니다.");
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;
