@@ -3,7 +3,7 @@ package back.vybz.userservice.agreement.domain.mysql;
 import lombok.Getter;
 
 @Getter
-public enum AgreementCategory {
+public enum AgreementType {
 
     MEMBER("회원 약관"),
     PRIVACY("개인정보 처리방침"),
@@ -12,7 +12,8 @@ public enum AgreementCategory {
     DONATION("후원 약관");
 
     private final String description;
-    AgreementCategory(String description) {
+
+    AgreementType(String description) {
         this.description = description;
     }
 }

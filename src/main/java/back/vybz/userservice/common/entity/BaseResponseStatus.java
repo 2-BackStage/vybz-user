@@ -85,7 +85,14 @@ public enum BaseResponseStatus {
      * 버스커 SNS 에러
      */
     DUPLICATE_BUSKER_SNS(HttpStatus.BAD_REQUEST, false, 1500, "이미 존재하는 버스커 SNS 입니다."),
-    NO_EXIST_BUSKER_SNS(HttpStatus.BAD_REQUEST, false, 1501, "존재하지 않는 버스커 SNS 입니다.");
+    NO_EXIST_BUSKER_SNS(HttpStatus.BAD_REQUEST, false, 1501, "존재하지 않는 버스커 SNS 입니다."),
+
+    /**
+     * 약관 에러
+     */
+    DUPLICATE_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1600, "이미 존재하는 약관입니다."),
+    NO_EXIST_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1601, "존재하지 않는 약관입니다."),
+    NO_EXIST_AGREEMENT_TYPE(HttpStatus.BAD_REQUEST, false, 1602, "존재하지 않는 약관 종류입니다.");
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;
