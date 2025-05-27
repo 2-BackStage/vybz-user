@@ -11,20 +11,17 @@ import lombok.NoArgsConstructor;
 public class RequestAddUserInfoDto {
 
     private String userUuid;
-    private String profileImageUrl;
     private String nickname;
 
     @Builder
-    public RequestAddUserInfoDto(String userUuid, String profileImageUrl, String nickname) {
+    public RequestAddUserInfoDto(String userUuid, String nickname) {
         this.userUuid = userUuid;
-        this.profileImageUrl = profileImageUrl;
         this.nickname = nickname;
     }
 
     public UserInfo toEntity() {
         return UserInfo.builder()
                 .userUuid(userUuid)
-                .profileImageUrl(profileImageUrl)
                 .nickname(nickname)
                 .build();
     }
@@ -32,7 +29,6 @@ public class RequestAddUserInfoDto {
     public static RequestAddUserInfoDto from(RequestAddUserInfoVo requestAddUserInfoVo) {
         return RequestAddUserInfoDto.builder()
                 .userUuid(requestAddUserInfoVo.getUserUuid())
-                .profileImageUrl(requestAddUserInfoVo.getProfileImageUrl())
                 .nickname(requestAddUserInfoVo.getNickname())
                 .build();
     }

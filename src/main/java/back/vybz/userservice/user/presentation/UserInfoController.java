@@ -13,7 +13,9 @@ import back.vybz.userservice.user.vo.request.RequestUpdateUserInfoVo;
 import back.vybz.userservice.user.vo.response.ResponseUserInfoVo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -61,12 +63,16 @@ public class UserInfoController {
 
     /**
      * 유저 정보 수정
-     * @param requestUpdateUserInfoVo
+     * @param userUuid
+     * @param profileImage
+     * @param nickname
      */
     @Operation(summary = "유저 정보 수정 API", description = "유저 정보 수정 API 입니다.", tags = {"User-Service"})
-    @PutMapping
-    public BaseResponseEntity<Void> updateUserInfo(@RequestBody RequestUpdateUserInfoVo requestUpdateUserInfoVo) {
-        userInfoService.updateUserInfo(RequestUpdateUserInfoDto.from(requestUpdateUserInfoVo));
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public BaseResponseEntity<Void> updateUserInfo(@RequestPart("userUuid") String userUuid,
+                                                   @RequestPart(value = "profileImage", required = false) MultipartFile profileImage,
+                                                   @RequestPart("nickname") String nickname) {
+        userInfoService.updateUserInfo(RequestUpdateUserInfoDto.from(userUuid, profileImage, nickname));
         return new BaseResponseEntity<>(BaseResponseStatus.SUCCESS);
     }
 

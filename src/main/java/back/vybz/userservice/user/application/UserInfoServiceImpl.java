@@ -1,6 +1,7 @@
 package back.vybz.userservice.user.application;
 
 import back.vybz.userservice.common.entity.BaseResponseStatus;
+import back.vybz.userservice.common.util.AmazonS3UploaderUtil;
 import back.vybz.userservice.exception.BaseException;
 import back.vybz.userservice.user.domain.mysql.UserInfo;
 import back.vybz.userservice.user.dto.request.RequestAddUserInfoDto;
@@ -11,6 +12,7 @@ import back.vybz.userservice.user.infrastructure.UserInfoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ import java.util.List;
 public class UserInfoServiceImpl implements UserInfoService {
 
     private final UserInfoRepository userInfoRepository;
+    private final AmazonS3UploaderUtil amazonS3UploaderUtil;
 
     /**
      * 유저 정보 추가
@@ -64,7 +67,20 @@ public class UserInfoServiceImpl implements UserInfoService {
     public void updateUserInfo(RequestUpdateUserInfoDto requestUpdateUserInfoDto) {
         UserInfo userInfo = userInfoRepository.findByUserUuidAndDeletedFalse(requestUpdateUserInfoDto.getUserUuid())
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_USER));
-        userInfoRepository.save(requestUpdateUserInfoDto.updateEntity(userInfo));
+
+        if (requestUpdateUserInfoDto.getNickname() != null) {
+            userInfo.updateNickname(requestUpdateUserInfoDto.getNickname());
+        }
+
+        MultipartFile profileImage = requestUpdateUserInfoDto.getProfileImage();
+        if (profileImage != null && !profileImage.isEmpty()) {
+            if (userInfo.getProfileImageUrl() != null) {
+                amazonS3UploaderUtil.delete(userInfo.getProfileImageUrl());
+            }
+            String imageUrl = amazonS3UploaderUtil.upload(profileImage, "user-profile");
+            userInfo.updateProfileImageUrl(imageUrl);
+        }
+
     }
 
     /**

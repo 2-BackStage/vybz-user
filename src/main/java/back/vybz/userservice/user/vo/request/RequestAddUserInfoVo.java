@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 public class RequestAddUserInfoVo {
 
     private String userUuid;
-    private String profileImageUrl;
     private String nickname;
 
 }
