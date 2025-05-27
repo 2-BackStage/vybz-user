@@ -9,7 +9,6 @@ import back.vybz.userservice.user.dto.request.RequestUpdateUserInfoDto;
 import back.vybz.userservice.user.dto.response.ResponseUserInfoDto;
 import back.vybz.userservice.user.vo.request.RequestAddUserInfoVo;
 import back.vybz.userservice.user.vo.request.RequestDeleteUserInfoVo;
-import back.vybz.userservice.user.vo.request.RequestUpdateUserInfoVo;
 import back.vybz.userservice.user.vo.response.ResponseUserInfoVo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -72,7 +71,7 @@ public class UserInfoController {
     public BaseResponseEntity<Void> updateUserInfo(@RequestPart("userUuid") String userUuid,
                                                    @RequestPart(value = "profileImage", required = false) MultipartFile profileImage,
                                                    @RequestPart("nickname") String nickname) {
-        userInfoService.updateUserInfo(RequestUpdateUserInfoDto.from(userUuid, profileImage, nickname));
+        userInfoService.updateUserInfo(RequestUpdateUserInfoDto.of(userUuid, profileImage, nickname));
         return new BaseResponseEntity<>(BaseResponseStatus.SUCCESS);
     }
 

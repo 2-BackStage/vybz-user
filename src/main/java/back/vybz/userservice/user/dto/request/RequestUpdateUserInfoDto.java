@@ -1,7 +1,6 @@
 package back.vybz.userservice.user.dto.request;
 
 import back.vybz.userservice.user.domain.mysql.UserInfo;
-import back.vybz.userservice.user.vo.request.RequestUpdateUserInfoVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,16 @@ public class RequestUpdateUserInfoDto {
         this.nickname = nickname;
     }
 
-    public static RequestUpdateUserInfoDto from(String userUuid, MultipartFile profileImage, String nickname) {
+    public void updateEntity(UserInfo userInfo, String imageUrl) {
+        if (nickname != null) {
+            userInfo.updateNickname(nickname);
+        }
+        if (imageUrl != null) {
+            userInfo.updateProfileImageUrl(imageUrl);
+        }
+    }
+
+    public static RequestUpdateUserInfoDto of(String userUuid, MultipartFile profileImage, String nickname) {
         return RequestUpdateUserInfoDto.builder()
                 .userUuid(userUuid)
                 .profileImage(profileImage)

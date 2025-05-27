@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,12 +26,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     /**
      * 유저 정보 추가
+     *
      * @param requestAddUserInfoDto
      */
     @Transactional
     @Override
     public void createUserInfo(RequestAddUserInfoDto requestAddUserInfoDto) {
-        if(userInfoRepository.existsByUserUuid(requestAddUserInfoDto.getUserUuid())) {
+        if (userInfoRepository.existsByUserUuid(requestAddUserInfoDto.getUserUuid())) {
             throw new BaseException(BaseResponseStatus.DUPLICATE_USER);
         }
         userInfoRepository.save(requestAddUserInfoDto.toEntity());
@@ -38,6 +40,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     /**
      * userUuid로 유저 정보 조회
+     *
      * @param userUuid
      */
     @Override
@@ -60,6 +63,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     /**
      * 유저 정보 수정
+     *
      * @param requestUpdateUserInfoDto
      */
     @Transactional
@@ -68,23 +72,21 @@ public class UserInfoServiceImpl implements UserInfoService {
         UserInfo userInfo = userInfoRepository.findByUserUuidAndDeletedFalse(requestUpdateUserInfoDto.getUserUuid())
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_USER));
 
-        if (requestUpdateUserInfoDto.getNickname() != null) {
-            userInfo.updateNickname(requestUpdateUserInfoDto.getNickname());
-        }
-
+        String imageUrl = null;
         MultipartFile profileImage = requestUpdateUserInfoDto.getProfileImage();
+
         if (profileImage != null && !profileImage.isEmpty()) {
-            if (userInfo.getProfileImageUrl() != null) {
-                amazonS3UploaderUtil.delete(userInfo.getProfileImageUrl());
-            }
-            String imageUrl = amazonS3UploaderUtil.upload(profileImage, "user-profile");
-            userInfo.updateProfileImageUrl(imageUrl);
+            Optional.ofNullable(userInfo.getProfileImageUrl())
+                    .ifPresent(amazonS3UploaderUtil::delete);
+            imageUrl = amazonS3UploaderUtil.upload(profileImage, "user-profile");
         }
+        requestUpdateUserInfoDto.updateEntity(userInfo, imageUrl);
 
     }
 
     /**
      * 유저 정보 삭제
+     *
      * @param requestDeleteUserInfoDto
      */
     @Transactional
