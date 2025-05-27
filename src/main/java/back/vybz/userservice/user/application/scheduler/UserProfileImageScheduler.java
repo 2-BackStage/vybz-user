@@ -24,7 +24,7 @@ public class UserProfileImageScheduler {
     public void cleanUpDeletedProfileImages() {
         List<UserInfo> deletedUserWithImage = userInfoRepository.findAllByDeletedTrueAndProfileImageUrlIsNotNull();
 
-        log.info("[SCHEDULER] 삭제 대상 유저 수: {}", deletedUserWithImage.size());
+        log.info("[SCHEDULER] 유저 프로필 이미지 삭제 대상 유저 수: {}", deletedUserWithImage.size());
 
         for (UserInfo user : deletedUserWithImage) {
             try {

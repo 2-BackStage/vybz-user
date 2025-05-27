@@ -25,4 +25,8 @@ public interface BuskerInfoRepository extends JpaRepository<BuskerInfo, Long> {
      */
     List<BuskerInfo> findAllByDeletedFalse();
 
+    /**
+     * 프로필 이미지가 있는 삭제된 버스커 조회
+     */
+    List<BuskerInfo> findAllByDeletedTrueAndProfileImageUrlIsNotNull();
 }

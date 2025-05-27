@@ -5,32 +5,35 @@ import back.vybz.userservice.busker.vo.request.RequestUpdateBuskerInfoVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @NoArgsConstructor
 public class RequestUpdateBuskerInfoDto {
 
     private String userUuid;
-    private String profileImageUrl;
+    private MultipartFile profileImageUrl;
     private String nickname;
     private Long categoryId;
 
     @Builder
-    public RequestUpdateBuskerInfoDto(String userUuid, String profileImageUrl, String nickname, Long categoryId) {
+    public RequestUpdateBuskerInfoDto(String userUuid, MultipartFile profileImageUrl, String nickname, Long categoryId) {
         this.userUuid = userUuid;
         this.profileImageUrl = profileImageUrl;
         this.nickname = nickname;
         this.categoryId = categoryId;
     }
 
-    public BuskerInfo updateEntity(BuskerInfo buskerInfo) {
-        return BuskerInfo.builder()
-                .id(buskerInfo.getId())
-                .userUuid(userUuid)
-                .profileImageUrl(profileImageUrl)
-                .nickname(nickname)
-                .categoryId(categoryId)
-                .build();
+    public void updateEntity(BuskerInfo buskerInfo, String imageUrl) {
+        if (nickname != null) {
+            buskerInfo.updateNickname(nickname);
+        }
+        if (categoryId != null) {
+            buskerInfo.updateCategoryId(categoryId);
+        }
+        if (profileImageUrl != null && !profileImageUrl.isEmpty() && imageUrl != null) {
+            buskerInfo.updateProfileImage(imageUrl);
+        }
     }
 
     public static RequestUpdateBuskerInfoDto from(RequestUpdateBuskerInfoVo requestUpdateBuskerInfoVo) {

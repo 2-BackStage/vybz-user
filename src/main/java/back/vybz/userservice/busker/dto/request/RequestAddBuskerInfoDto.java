@@ -5,28 +5,29 @@ import back.vybz.userservice.busker.vo.request.RequestAddBuskerInfoVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @NoArgsConstructor
 public class RequestAddBuskerInfoDto {
 
     private String userUuid;
-    private String profileImageUrl;
+    private MultipartFile profileImageUrl;
     private String nickname;
     private Long categoryId;
 
     @Builder
-    public RequestAddBuskerInfoDto(String userUuid, String profileImageUrl, String nickname, Long categoryId) {
+    public RequestAddBuskerInfoDto(String userUuid, MultipartFile profileImageUrl, String nickname, Long categoryId) {
         this.userUuid = userUuid;
         this.profileImageUrl = profileImageUrl;
         this.nickname = nickname;
         this.categoryId = categoryId;
     }
 
-    public BuskerInfo toEntity() {
+    public BuskerInfo toEntity(String profileImage) {
         return BuskerInfo.builder()
                 .userUuid(userUuid)
-                .profileImageUrl(profileImageUrl)
+                .profileImageUrl(profileImage)
                 .nickname(nickname)
                 .categoryId(categoryId)
                 .build();
