@@ -1,18 +1,18 @@
 package back.vybz.userservice.agreement.domain.mysql;
 
 import back.vybz.userservice.common.entity.BaseEntity;
+import back.vybz.userservice.common.entity.SoftDeletableEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Comment;
 
 @Entity
 @Getter
 @Table(name = "agreement")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Agreement extends BaseEntity {
+public class Agreement extends SoftDeletableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,29 +22,35 @@ public class Agreement extends BaseEntity {
      * 약관 제목
      */
 
-    @Column(nullable = false)
-    private String agreementTitle;
+    @Column(name = "title", nullable = false, unique = true)
+    private String title;
 
     /**
      * 약관 내용
      */
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String agreementContent;
+    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
+    private String content;
+
+    /**
+     * 필수 여부
+     */
+    @Column(name = "required", nullable = false)
+    private Boolean required;
 
    /**
      * 약관 종류
      */
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private AgreementCategory agreementCategory;
+    @Column(name = "agreement_type", nullable = false)
+    private AgreementType agreementType;
 
     @Builder
-    public Agreement(String agreementTitle,
-                     String agreementContent,
-                     AgreementCategory agreementCategory)  {
-        this.agreementTitle = agreementTitle;
-        this.agreementContent = agreementContent;
-        this.agreementCategory = agreementCategory;
+    public Agreement(Long id, String title, String content, boolean required, AgreementType agreementType) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.required = required;
+        this.agreementType = agreementType;
     }
 
 }

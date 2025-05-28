@@ -1,6 +1,6 @@
 package back.vybz.userservice.busker.domain.mysql;
 
-import back.vybz.userservice.common.entity.BaseEntity;
+import back.vybz.userservice.common.entity.SoftDeletableEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -8,13 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "busker_member")
+@Table(name = "busker_group")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BuskerMember extends BaseEntity {
+public class BuskerGroup extends SoftDeletableEntity {
 
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -34,10 +34,14 @@ public class BuskerMember extends BaseEntity {
      */
     @Enumerated(EnumType.STRING)
     @Column(name = "state", nullable = false)
-    private BuskerState state;
+    private BuskerState state = BuskerState.PENDING;
+
+    public void updateState(BuskerState state) {
+        this.state = state;
+    }
 
     @Builder
-    public BuskerMember(Long id, String userUuid, String groupUuid, BuskerState state) {
+    public BuskerGroup(Long id, String userUuid, String groupUuid, BuskerState state) {
         this.id = id;
         this.userUuid = userUuid;
         this.groupUuid = groupUuid;

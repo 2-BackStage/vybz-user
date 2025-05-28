@@ -26,9 +26,8 @@ public class UserAgreement extends BaseEntity {
     /**
      * 약관 id
      */
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "agreement_id", nullable = false)
-    private Agreement agreement;
+    private Long agreementId;
 
     /**
      * 약관 동의 여부
@@ -37,11 +36,11 @@ public class UserAgreement extends BaseEntity {
     private Boolean agreed;
 
     @Builder
-    public UserAgreement(String userUuid,
-                         Agreement agreement,
-                         Boolean agreed) {
+    public UserAgreement(Long id, String userUuid, Long agreementId, Boolean agreed) {
+        this.id = id;
         this.userUuid = userUuid;
-        this.agreement = agreement;
+        this.agreementId = agreementId;
         this.agreed = agreed;
     }
+
 }

@@ -21,13 +21,13 @@ public class UserInfo extends SoftDeletableEntity {
     /**
      * 회원 UUID
      * */
-    @Column(name = "user_uuid", nullable = false, unique = true, length = 255)
+    @Column(name = "user_uuid", nullable = false, unique = true)
     private String userUuid;
 
     /**
      * 회원 프로필사진URL
      * */
-    @Column(name = "profile_image_url", length = 255)
+    @Column(name = "profile_image_url")
     private String profileImageUrl;
 
     /**
@@ -36,8 +36,21 @@ public class UserInfo extends SoftDeletableEntity {
     @Column(name = "nickname", nullable = false, length = 15)
     private String nickname;
 
+    public void updateProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void clearProfileImageUrl() {
+        this.profileImageUrl = null;
+    }
+
     @Builder
-    public UserInfo(String userUuid, String profileImageUrl, String nickname) {
+    public UserInfo(Long id, String userUuid, String profileImageUrl, String nickname) {
+        this.id = id;
         this.userUuid = userUuid;
         this.profileImageUrl = profileImageUrl;
         this.nickname = nickname;

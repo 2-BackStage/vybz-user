@@ -51,7 +51,7 @@ public class CategoryController {
      * @param name
      */
     @Operation(summary = "카테고리 이름으로 카테고리 조회 API", description = "카테고리 이름으로 카테고리 조회 API 입니다.", tags = {"Category-Service"})
-    @GetMapping("/name")
+    @GetMapping("/search")
     public BaseResponseEntity<ResponseCategoryVo> getCategoryByName(@RequestParam("name") String name) {
         ResponseCategoryDto responseCategoryDto = categoryService.getCategoryByName(name);
         return new BaseResponseEntity<>(responseCategoryDto.toVo());
@@ -63,8 +63,8 @@ public class CategoryController {
     @Operation(summary = "카테고리 전체 조회 API", description = "카테고리 전체 조회 API 입니다.", tags = {"Category-Service"})
     @GetMapping("/list")
     public BaseResponseEntity<List<ResponseCategoryVo>> getAllCategories() {
-        List<ResponseCategoryDto> responseCategoryDto = categoryService.getAllCategories();
-        List<ResponseCategoryVo> responseCategoryVo = responseCategoryDto.stream()
+       List<ResponseCategoryVo> responseCategoryVo = categoryService.getAllCategories()
+                .stream()
                 .map(ResponseCategoryDto::toVo)
                 .toList();
         return new BaseResponseEntity<>(responseCategoryVo);

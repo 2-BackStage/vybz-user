@@ -19,9 +19,9 @@ public class RequestUpdateCategoryDto {
         this.name = name;
     }
 
-    public Category updateEntity() {
+    public Category updateEntity(Category category) {
         return Category.builder()
-                .id(id)
+                .id(category.getId())
                 .name(name)
                 .build();
     }

@@ -59,7 +59,42 @@ public enum BaseResponseStatus {
      * 카테고리 에러
      */
     DUPLICATE_CATEGORY(HttpStatus.BAD_REQUEST, false, 1100, "중복된 카테고리입니다."),
-    NO_EXIST_CATEGORY(HttpStatus.BAD_REQUEST, false, 1101, "존재하지 않는 카테고리입니다.");
+    NO_EXIST_CATEGORY(HttpStatus.BAD_REQUEST, false, 1101, "존재하지 않는 카테고리입니다."),
+
+    /**
+     * 유저 정보 에러
+     */
+    DUPLICATE_USER(HttpStatus.BAD_REQUEST, false, 1200, "이미 존재하는 회원입니다."),
+    NO_EXIST_USER(HttpStatus.BAD_REQUEST, false, 1201, "존재하지 않는 회원입니다."),
+
+    /**
+     * 버스커 정보 에러
+     */
+    DUPLICATE_BUSKER(HttpStatus.BAD_REQUEST, false, 1300, "이미 존재하는 버스커입니다."),
+    NO_EXIST_BUSKER(HttpStatus.BAD_REQUEST, false, 1301, "존재하지 않는 버스커입니다."),
+
+    /**
+     * 버스커 그룹 에러
+     */
+    DUPLICATE_BUSKER_GROUP(HttpStatus.BAD_REQUEST, false, 1400, "이미 존재하는 버스커 그룹입니다."),
+    NO_EXIST_BUSKER_GROUP(HttpStatus.BAD_REQUEST, false, 1401, "존재하지 않는 버스커 그룹입니다."),
+    DUPLICATE_BUSKER_MEMBER(HttpStatus.BAD_REQUEST, false, 1402, "이미 존재하는 버스커 멤버입니다."),
+    NO_EXIST_BUSKER_MEMBER(HttpStatus.BAD_REQUEST, false, 1403, "존재하지 않는 버스커 멤버입니다."),
+
+    /**
+     * 버스커 SNS 에러
+     */
+    DUPLICATE_BUSKER_SNS(HttpStatus.BAD_REQUEST, false, 1500, "이미 존재하는 버스커 SNS 입니다."),
+    NO_EXIST_BUSKER_SNS(HttpStatus.BAD_REQUEST, false, 1501, "존재하지 않는 버스커 SNS 입니다."),
+
+    /**
+     * 약관 에러
+     */
+    DUPLICATE_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1600, "이미 존재하는 약관입니다."),
+    NO_EXIST_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1601, "존재하지 않는 약관입니다."),
+    NO_EXIST_AGREEMENT_TYPE(HttpStatus.BAD_REQUEST, false, 1602, "존재하지 않는 약관 종류입니다."),
+    ALREADY_AGREED(HttpStatus.BAD_REQUEST, false, 1603, "이미 동의한 약관입니다."),
+    NO_EXIST_USER_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1604, "존재하지 않는 유저 약관입니다.");
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;
