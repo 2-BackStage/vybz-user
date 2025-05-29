@@ -3,8 +3,6 @@ package back.vybz.userservice.user.domain.mongodb;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
-
 @Getter
 @NoArgsConstructor
 public class Following {
@@ -13,7 +11,6 @@ public class Following {
 
     private String nickname;
 
-    private String profileImage;
+    private String profileImageUrl;
 
-    private Instant followedAt;
 }
