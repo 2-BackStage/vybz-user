@@ -19,4 +19,8 @@ public abstract class SoftDeletableEntity extends BaseEntity {
         this.deleted = false;
     }
 
+    public void toggleDelete() {
+        this.deleted = !this.deleted;
+    }
+
 }
