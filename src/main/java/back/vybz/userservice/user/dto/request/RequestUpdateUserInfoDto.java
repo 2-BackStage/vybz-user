@@ -1,6 +1,7 @@
 package back.vybz.userservice.user.dto.request;
 
 import back.vybz.userservice.user.domain.mysql.UserInfo;
+import back.vybz.userservice.user.vo.request.RequestUpdateUserInfoVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,11 +31,11 @@ public class RequestUpdateUserInfoDto {
         }
     }
 
-    public static RequestUpdateUserInfoDto of(String userUuid, MultipartFile profileImage, String nickname) {
+    public static RequestUpdateUserInfoDto from(RequestUpdateUserInfoVo requestUpdateUserInfoVo) {
         return RequestUpdateUserInfoDto.builder()
-                .userUuid(userUuid)
-                .profileImage(profileImage)
-                .nickname(nickname)
+                .userUuid(requestUpdateUserInfoVo.getUserUuid())
+                .profileImage(requestUpdateUserInfoVo.getProfileImage())
+                .nickname(requestUpdateUserInfoVo.getNickname())
                 .build();
     }
 
