@@ -9,12 +9,12 @@ import back.vybz.userservice.user.dto.mysql.request.RequestUpdateUserInfoDto;
 import back.vybz.userservice.user.dto.mysql.response.ResponseUserInfoDto;
 import back.vybz.userservice.user.vo.mysql.request.RequestAddUserInfoVo;
 import back.vybz.userservice.user.vo.mysql.request.RequestDeleteUserInfoVo;
+import back.vybz.userservice.user.vo.mysql.request.RequestUpdateUserInfoVo;
 import back.vybz.userservice.user.vo.mysql.response.ResponseUserInfoVo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
