@@ -14,14 +14,14 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Document("user_following")
-public class UserFollowing {
+@Document("follow")
+public class Follow {
 
     @Id
     private String id;
 
-    @Field(name = "user_uuid")
-    private String userUuid;
+    @Field(name = "follower")
+    private List<Follower> follower;
 
     @Field(name = "following")
     private List<Following> following;
@@ -35,9 +35,10 @@ public class UserFollowing {
     private Instant updatedAt;
 
     @Builder
-    public UserFollowing(String id, String userUuid, List<Following> following) {
+    public Follow(String id, List<Follower> follower, List<Following> following) {
         this.id = id;
-        this.userUuid = userUuid;
+        this.follower = follower;
         this.following = following;
     }
+
 }

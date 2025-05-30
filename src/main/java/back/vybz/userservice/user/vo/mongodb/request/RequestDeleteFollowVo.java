@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class RequestDeleteUserFollowingVo {
+public class RequestDeleteFollowVo {
 
     private String userUuid;
     private String buskerUuid;
