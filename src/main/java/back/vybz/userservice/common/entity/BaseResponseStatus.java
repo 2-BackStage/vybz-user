@@ -94,7 +94,13 @@ public enum BaseResponseStatus {
     NO_EXIST_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1601, "존재하지 않는 약관입니다."),
     NO_EXIST_AGREEMENT_TYPE(HttpStatus.BAD_REQUEST, false, 1602, "존재하지 않는 약관 종류입니다."),
     ALREADY_AGREED(HttpStatus.BAD_REQUEST, false, 1603, "이미 동의한 약관입니다."),
-    NO_EXIST_USER_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1604, "존재하지 않는 유저 약관입니다.");
+    NO_EXIST_USER_AGREEMENT(HttpStatus.BAD_REQUEST, false, 1604, "존재하지 않는 유저 약관입니다."),
+
+    /**
+     * 팔로우 에러
+     */
+    ALREADY_FOLLOWED(HttpStatus.BAD_REQUEST, false, 1700, "이미 팔로우한 버스커입니다."),
+    NO_EXIST_FOLLOW(HttpStatus.BAD_REQUEST, false, 1701, "존재하지 않는 팔로우입니다.");
 
     private final HttpStatusCode httpStatusCode;
     private final boolean isSuccess;

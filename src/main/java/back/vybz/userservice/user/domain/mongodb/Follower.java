@@ -5,12 +5,10 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class Following {
+public class Follower {
 
-    private String buskerUuid;
-
+    private String userUuid;
     private String nickname;
-
     private String profileImageUrl;
 
 }
