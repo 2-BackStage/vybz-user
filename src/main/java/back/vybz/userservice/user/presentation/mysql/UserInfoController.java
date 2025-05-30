@@ -62,16 +62,12 @@ public class UserInfoController {
 
     /**
      * 유저 정보 수정
-     * @param userUuid
-     * @param profileImage
-     * @param nickname
+     * @param requestUpdateUserInfoVo
      */
     @Operation(summary = "유저 정보 수정 API", description = "유저 정보 수정 API 입니다.", tags = {"User-Service"})
     @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public BaseResponseEntity<Void> updateUserInfo(@RequestPart("userUuid") String userUuid,
-                                                   @RequestPart(value = "profileImage", required = false) MultipartFile profileImage,
-                                                   @RequestPart("nickname") String nickname) {
-        userInfoService.updateUserInfo(RequestUpdateUserInfoDto.of(userUuid, profileImage, nickname));
+    public BaseResponseEntity<Void> updateUserInfo(@ModelAttribute RequestUpdateUserInfoVo requestUpdateUserInfoVo) {
+        userInfoService.updateUserInfo(RequestUpdateUserInfoDto.from(requestUpdateUserInfoVo));
         return new BaseResponseEntity<>(BaseResponseStatus.SUCCESS);
     }
 
