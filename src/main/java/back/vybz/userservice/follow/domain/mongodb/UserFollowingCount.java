@@ -19,10 +19,10 @@ public class UserFollowingCount {
     private String userUuid;
 
     @Field(name = "total_following_count")
-    private Long totalFollowingCount;
+    private Integer totalFollowingCount;
 
     @Builder
-    public UserFollowingCount(String id, String userUuid, Long totalFollowingCount) {
+    public UserFollowingCount(String id, String userUuid, Integer totalFollowingCount) {
         this.id = id;
         this.userUuid = userUuid;
         this.totalFollowingCount = totalFollowingCount;

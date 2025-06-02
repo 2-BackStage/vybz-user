@@ -21,10 +21,10 @@ public class BuskerFollowerCount {
 
     // 총 팔로워 수
     @Field(name = "total_follower_count")
-    private Long totalFollowerCount;
+    private Integer totalFollowerCount;
 
     @Builder
-    public BuskerFollowerCount(String id, String buskerUuid, Long totalFollowerCount) {
+    public BuskerFollowerCount(String id, String buskerUuid, Integer totalFollowerCount) {
         this.id = id;
         this.buskerUuid = buskerUuid;
         this.totalFollowerCount = totalFollowerCount;
