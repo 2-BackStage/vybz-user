@@ -1,4 +1,4 @@
-package back.vybz.userservice.user.vo.mongodb.request;
+package back.vybz.userservice.follow.vo.mongodb.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

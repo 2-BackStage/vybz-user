@@ -1,6 +1,6 @@
-package back.vybz.userservice.user.vo.mongodb.response;
+package back.vybz.userservice.follow.vo.mongodb.response;
 
-import back.vybz.userservice.user.domain.mongodb.Follower;
+import back.vybz.userservice.follow.domain.mongodb.Follower;
 import lombok.Builder;
 import lombok.Getter;
 

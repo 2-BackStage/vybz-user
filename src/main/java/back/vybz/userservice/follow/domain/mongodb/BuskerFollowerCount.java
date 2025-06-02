@@ -1,9 +1,8 @@
-package back.vybz.userservice.busker.domain.mongodb;
+package back.vybz.userservice.follow.domain.mongodb;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -14,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class BuskerFollowerCount {
 
     @Id
-    private ObjectId id;
+    private String id;
 
     // 버스커 uuid
     @Field(name = "busker_uuid")
@@ -22,10 +21,10 @@ public class BuskerFollowerCount {
 
     // 총 팔로워 수
     @Field(name = "total_follower_count")
-    private Integer totalFollowerCount = 0;
+    private Long totalFollowerCount;
 
     @Builder
-    public BuskerFollowerCount(ObjectId id, String buskerUuid, Integer totalFollowerCount) {
+    public BuskerFollowerCount(String id, String buskerUuid, Long totalFollowerCount) {
         this.id = id;
         this.buskerUuid = buskerUuid;
         this.totalFollowerCount = totalFollowerCount;

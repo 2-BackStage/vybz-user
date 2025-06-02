@@ -1,12 +1,12 @@
-package back.vybz.userservice.user.application.mongodb;
+package back.vybz.userservice.follow.application.mongodb;
 
 import back.vybz.userservice.common.entity.BaseResponseStatus;
 import back.vybz.userservice.exception.BaseException;
-import back.vybz.userservice.user.domain.mongodb.Follow;
-import back.vybz.userservice.user.dto.mongodb.request.RequestAddFollowDto;
-import back.vybz.userservice.user.dto.mongodb.request.RequestDeleteFollowDto;
-import back.vybz.userservice.user.dto.mongodb.response.ResponseFollowDto;
-import back.vybz.userservice.user.infrastructure.mongodb.FollowRepository;
+import back.vybz.userservice.follow.domain.mongodb.Follow;
+import back.vybz.userservice.follow.dto.mongodb.request.RequestAddFollowDto;
+import back.vybz.userservice.follow.dto.mongodb.request.RequestDeleteFollowDto;
+import back.vybz.userservice.follow.dto.mongodb.response.ResponseFollowDto;
+import back.vybz.userservice.follow.infrastructure.mongodb.FollowRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,10 @@
-package back.vybz.userservice.user.dto.mongodb.response;
+package back.vybz.userservice.follow.dto.mongodb.response;
 
-import back.vybz.userservice.user.domain.mongodb.Follow;
-import back.vybz.userservice.user.domain.mongodb.Follower;
-import back.vybz.userservice.user.domain.mongodb.Following;
-import back.vybz.userservice.user.vo.mongodb.response.ResponseBuskerFollowerVo;
-import back.vybz.userservice.user.vo.mongodb.response.ResponseUserFollowingVo;
+import back.vybz.userservice.follow.domain.mongodb.Follow;
+import back.vybz.userservice.follow.domain.mongodb.Follower;
+import back.vybz.userservice.follow.domain.mongodb.Following;
+import back.vybz.userservice.follow.vo.mongodb.response.ResponseBuskerFollowerVo;
+import back.vybz.userservice.follow.vo.mongodb.response.ResponseUserFollowingVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

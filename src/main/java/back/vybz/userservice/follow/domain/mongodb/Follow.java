@@ -1,4 +1,4 @@
-package back.vybz.userservice.user.domain.mongodb;
+package back.vybz.userservice.follow.domain.mongodb;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package back.vybz.userservice.user.infrastructure.mongodb;
+package back.vybz.userservice.follow.infrastructure.mongodb;
 
-import back.vybz.userservice.user.domain.mongodb.Follow;
+import back.vybz.userservice.follow.domain.mongodb.Follow;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 

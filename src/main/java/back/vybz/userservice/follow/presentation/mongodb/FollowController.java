@@ -1,15 +1,15 @@
-package back.vybz.userservice.user.presentation.mongodb;
+package back.vybz.userservice.follow.presentation.mongodb;
 
 import back.vybz.userservice.common.entity.BaseResponseEntity;
 import back.vybz.userservice.common.entity.BaseResponseStatus;
-import back.vybz.userservice.user.application.mongodb.FollowService;
-import back.vybz.userservice.user.dto.mongodb.request.RequestAddFollowDto;
-import back.vybz.userservice.user.dto.mongodb.request.RequestDeleteFollowDto;
-import back.vybz.userservice.user.dto.mongodb.response.ResponseFollowDto;
-import back.vybz.userservice.user.vo.mongodb.request.RequestAddFollowVo;
-import back.vybz.userservice.user.vo.mongodb.request.RequestDeleteFollowVo;
-import back.vybz.userservice.user.vo.mongodb.response.ResponseBuskerFollowerVo;
-import back.vybz.userservice.user.vo.mongodb.response.ResponseUserFollowingVo;
+import back.vybz.userservice.follow.application.mongodb.FollowService;
+import back.vybz.userservice.follow.dto.mongodb.request.RequestAddFollowDto;
+import back.vybz.userservice.follow.dto.mongodb.request.RequestDeleteFollowDto;
+import back.vybz.userservice.follow.dto.mongodb.response.ResponseFollowDto;
+import back.vybz.userservice.follow.vo.mongodb.request.RequestAddFollowVo;
+import back.vybz.userservice.follow.vo.mongodb.request.RequestDeleteFollowVo;
+import back.vybz.userservice.follow.vo.mongodb.response.ResponseBuskerFollowerVo;
+import back.vybz.userservice.follow.vo.mongodb.response.ResponseUserFollowingVo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

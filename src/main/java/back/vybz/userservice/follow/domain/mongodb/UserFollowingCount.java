@@ -1,10 +1,9 @@
-package back.vybz.userservice.user.domain.mongodb;
+package back.vybz.userservice.follow.domain.mongodb;
 
-import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -14,16 +13,16 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class UserFollowingCount {
 
     @Id
-    private ObjectId id;
+    private String id;
 
     @Field(name = "user_uuid")
     private String userUuid;
 
     @Field(name = "total_following_count")
-    private Integer totalFollowingCount;
+    private Long totalFollowingCount;
 
     @Builder
-    public UserFollowingCount(ObjectId id, String userUuid, Integer totalFollowingCount) {
+    public UserFollowingCount(String id, String userUuid, Long totalFollowingCount) {
         this.id = id;
         this.userUuid = userUuid;
         this.totalFollowingCount = totalFollowingCount;

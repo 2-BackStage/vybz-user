@@ -1,6 +1,6 @@
-package back.vybz.userservice.user.dto.mongodb.request;
+package back.vybz.userservice.follow.dto.mongodb.request;
 
-import back.vybz.userservice.user.vo.mongodb.request.RequestDeleteFollowVo;
+import back.vybz.userservice.follow.vo.mongodb.request.RequestDeleteFollowVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
