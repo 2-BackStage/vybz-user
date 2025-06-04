@@ -1,7 +1,6 @@
 package back.vybz.user_info_service.user_info.application;
 
 import back.vybz.user_info_service.common.entity.BaseResponseStatus;
-import back.vybz.user_info_service.common.util.AmazonS3UploaderUtil;
 import back.vybz.user_info_service.common.exception.BaseException;
 import back.vybz.user_info_service.user_info.domain.UserInfo;
 import back.vybz.user_info_service.user_info.dto.request.RequestAddUserInfoDto;
@@ -22,7 +21,6 @@ import java.util.Optional;
 public class UserInfoServiceImpl implements UserInfoService {
 
     private final UserInfoRepository userInfoRepository;
-    private final AmazonS3UploaderUtil amazonS3UploaderUtil;
 
     /**
      * 유저 정보 추가
@@ -71,17 +69,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public void updateUserInfo(RequestUpdateUserInfoDto requestUpdateUserInfoDto) {
         UserInfo userInfo = userInfoRepository.findByUserUuidAndDeletedFalse(requestUpdateUserInfoDto.getUserUuid())
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_USER));
-
-        String imageUrl = null;
-        MultipartFile profileImage = requestUpdateUserInfoDto.getProfileImage();
-
-        if (profileImage != null && !profileImage.isEmpty()) {
-            Optional.ofNullable(userInfo.getProfileImageUrl())
-                    .ifPresent(amazonS3UploaderUtil::delete);
-            imageUrl = amazonS3UploaderUtil.upload(profileImage, "user-profile");
-        }
-        requestUpdateUserInfoDto.updateEntity(userInfo, imageUrl);
-
+        userInfoRepository.save(requestUpdateUserInfoDto.updateEntity(userInfo));
     }
 
     /**

@@ -5,36 +5,35 @@ import back.vybz.user_info_service.user_info.vo.request.RequestUpdateUserInfoVo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @NoArgsConstructor
 public class RequestUpdateUserInfoDto {
 
     private String userUuid;
-    private MultipartFile profileImage;
+    private String profileImageUrl;
     private String nickname;
 
     @Builder
-    public RequestUpdateUserInfoDto(String userUuid, MultipartFile profileImage, String nickname) {
+    public RequestUpdateUserInfoDto(String userUuid, String profileImageUrl, String nickname) {
         this.userUuid = userUuid;
-        this.profileImage = profileImage;
+        this.profileImageUrl = profileImageUrl;
         this.nickname = nickname;
     }
 
-    public void updateEntity(UserInfo userInfo, String imageUrl) {
-        if (nickname != null) {
-            userInfo.updateNickname(nickname);
-        }
-        if (imageUrl != null) {
-            userInfo.updateProfileImageUrl(imageUrl);
-        }
+    public UserInfo updateEntity(UserInfo userInfo) {
+        return UserInfo.builder()
+                .id(userInfo.getId())
+                .userUuid(userUuid)
+                .profileImageUrl(this.profileImageUrl)
+                .nickname(this.nickname)
+                .build();
     }
 
     public static RequestUpdateUserInfoDto from(RequestUpdateUserInfoVo requestUpdateUserInfoVo) {
         return RequestUpdateUserInfoDto.builder()
                 .userUuid(requestUpdateUserInfoVo.getUserUuid())
-                .profileImage(requestUpdateUserInfoVo.getProfileImage())
+                .profileImageUrl(requestUpdateUserInfoVo.getProfileImageUrl())
                 .nickname(requestUpdateUserInfoVo.getNickname())
                 .build();
     }
