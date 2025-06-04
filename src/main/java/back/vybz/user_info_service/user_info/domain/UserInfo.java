@@ -35,18 +35,6 @@ public class UserInfo extends SoftDeletableEntity {
     @Column(name = "nickname", nullable = false, length = 15)
     private String nickname;
 
-    public void updateProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
-    }
-
-    public void updateNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public void clearProfileImageUrl() {
-        this.profileImageUrl = null;
-    }
-
     @Builder
     public UserInfo(Long id, String userUuid, String profileImageUrl, String nickname) {
         this.id = id;
