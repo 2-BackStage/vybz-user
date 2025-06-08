@@ -26,7 +26,7 @@ public class UserInfoKafkaConfig {
         );
     }
 
-    @Bean
+    @Bean(name = "userInfoKafkaListenerContainerFactory")
     public ConcurrentKafkaListenerContainerFactory<String, UserInfoEvent> userInfoKafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, UserInfoEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(userInfoEventConsumerFactory());
