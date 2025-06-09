@@ -65,8 +65,8 @@ public class UserInfoController {
      * @param requestUpdateUserInfoVo
      */
     @Operation(summary = "유저 정보 수정 API", description = "유저 정보 수정 API 입니다.", tags = {"User-Service"})
-    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public BaseResponseEntity<Void> updateUserInfo(@ModelAttribute RequestUpdateUserInfoVo requestUpdateUserInfoVo) {
+    @PutMapping
+    public BaseResponseEntity<Void> updateUserInfo(@RequestBody RequestUpdateUserInfoVo requestUpdateUserInfoVo) {
         userInfoService.updateUserInfo(RequestUpdateUserInfoDto.from(requestUpdateUserInfoVo));
         return new BaseResponseEntity<>(BaseResponseStatus.SUCCESS);
     }
