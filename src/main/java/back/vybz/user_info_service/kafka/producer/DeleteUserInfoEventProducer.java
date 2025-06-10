@@ -18,7 +18,7 @@ public class DeleteUserInfoEventProducer {
     private static final String TOPIC = "delete-user-info";
 
     public void sendUserInfoEvent(String userUuid) {
-        log.info("[Kafka] Sending DeleteFollowEvent to topic '{}': {}", TOPIC, userUuid);
+        log.info("[Kafka] Sending DeleteUserInfoEvent to topic '{}': {}", TOPIC, userUuid);
         CompletableFuture<SendResult<String, String>> future =
                 kafkaTemplate.send(TOPIC, userUuid);
 

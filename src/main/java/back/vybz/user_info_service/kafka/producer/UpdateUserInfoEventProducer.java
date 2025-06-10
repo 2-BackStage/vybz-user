@@ -18,7 +18,7 @@ public class UpdateUserInfoEventProducer {
     private static final String TOPIC = "update-user-info";
 
     public void sendUserInfoEvent(UserInfoEvent event) {
-        log.info("[Kafka] Sending UpdateFollowEvent to topic '{}': {}", TOPIC, event);
+        log.info("[Kafka] Sending UpdateUserInfoEvent to topic '{}': {}", TOPIC, event);
         CompletableFuture<SendResult<String, UserInfoEvent>> future =
                 kafkaTemplate.send(TOPIC, event);
 
