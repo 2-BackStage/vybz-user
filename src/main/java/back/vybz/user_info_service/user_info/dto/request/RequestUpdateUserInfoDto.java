@@ -1,5 +1,6 @@
 package back.vybz.user_info_service.user_info.dto.request;
 
+import back.vybz.user_info_service.kafka.event.UserInfoEvent;
 import back.vybz.user_info_service.user_info.domain.UserInfo;
 import back.vybz.user_info_service.user_info.vo.request.RequestUpdateUserInfoVo;
 import lombok.Builder;
@@ -35,6 +36,14 @@ public class RequestUpdateUserInfoDto {
                 .userUuid(requestUpdateUserInfoVo.getUserUuid())
                 .profileImageUrl(requestUpdateUserInfoVo.getProfileImageUrl())
                 .nickname(requestUpdateUserInfoVo.getNickname())
+                .build();
+    }
+
+    public static UserInfoEvent toUserInfoEvent(UserInfo userInfo) {
+        return UserInfoEvent.builder()
+                .userUuid(userInfo.getUserUuid())
+                .nickname(userInfo.getNickname())
+                .profileImageUrl(userInfo.getProfileImageUrl())
                 .build();
     }
 

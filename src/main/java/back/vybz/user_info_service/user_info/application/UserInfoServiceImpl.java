@@ -2,6 +2,8 @@ package back.vybz.user_info_service.user_info.application;
 
 import back.vybz.user_info_service.common.entity.BaseResponseStatus;
 import back.vybz.user_info_service.common.exception.BaseException;
+import back.vybz.user_info_service.kafka.producer.DeleteUserInfoEventProducer;
+import back.vybz.user_info_service.kafka.producer.UpdateUserInfoEventProducer;
 import back.vybz.user_info_service.user_info.domain.UserInfo;
 import back.vybz.user_info_service.user_info.dto.request.RequestAddUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestDeleteUserInfoDto;
@@ -21,6 +23,8 @@ import java.util.Optional;
 public class UserInfoServiceImpl implements UserInfoService {
 
     private final UserInfoRepository userInfoRepository;
+    private final UpdateUserInfoEventProducer updateUserInfoEventProducer;
+    private final DeleteUserInfoEventProducer deleteUserInfoEventProducer;
 
     /**
      * 유저 정보 추가
@@ -70,6 +74,8 @@ public class UserInfoServiceImpl implements UserInfoService {
         UserInfo userInfo = userInfoRepository.findByUserUuidAndDeletedFalse(requestUpdateUserInfoDto.getUserUuid())
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_USER));
         userInfoRepository.save(requestUpdateUserInfoDto.updateEntity(userInfo));
+
+        updateUserInfoEventProducer.sendUserInfoEvent(RequestUpdateUserInfoDto.toUserInfoEvent(userInfo));
     }
 
     /**
@@ -83,5 +89,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         UserInfo userInfo = userInfoRepository.findByUserUuidAndDeletedFalse(requestDeleteUserInfoDto.getUserUuid())
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_USER));
         userInfo.softDelete();
+
+        deleteUserInfoEventProducer.sendUserInfoEvent(requestDeleteUserInfoDto.getUserUuid());
     }
 }
