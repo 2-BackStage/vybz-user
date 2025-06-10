@@ -15,8 +15,8 @@ public class UserInfoEvent {
     @Builder
     public UserInfoEvent(String userUuid, String profileImageUrl, String nickname) {
         this.userUuid = userUuid;
-        this.nickname = nickname;
         this.profileImageUrl = profileImageUrl;
+        this.nickname = nickname;
     }
 
 }

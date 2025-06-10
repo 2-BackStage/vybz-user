@@ -26,8 +26,8 @@ public class RequestUpdateUserInfoDto {
         return UserInfo.builder()
                 .id(userInfo.getId())
                 .userUuid(userUuid)
-                .profileImageUrl(this.profileImageUrl)
-                .nickname(this.nickname)
+                .profileImageUrl(profileImageUrl)
+                .nickname(nickname)
                 .build();
     }
 
