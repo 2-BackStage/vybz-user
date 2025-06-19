@@ -4,6 +4,7 @@ import back.vybz.user_info_service.user_info.dto.request.RequestAddUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestDeleteUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestUpdateUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.response.ResponseUserInfoDto;
+import back.vybz.user_info_service.user_info.dto.response.ResponseUserProfileDto;
 
 import java.util.List;
 
@@ -38,4 +39,11 @@ public interface UserInfoService {
      */
     void deleteUserInfo(RequestDeleteUserInfoDto requestDeleteUserInfoDto);
 
+
+    /**
+     * 사용자 프로필 이미지, 닉네임 조회
+     * @param userUuid
+     * @return
+     */
+    ResponseUserProfileDto getUserProfileByUuid(String userUuid);
 }

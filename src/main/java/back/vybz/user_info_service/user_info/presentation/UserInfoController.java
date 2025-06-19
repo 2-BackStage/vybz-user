@@ -7,10 +7,12 @@ import back.vybz.user_info_service.user_info.dto.request.RequestAddUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestDeleteUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestUpdateUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.response.ResponseUserInfoDto;
+import back.vybz.user_info_service.user_info.dto.response.ResponseUserProfileDto;
 import back.vybz.user_info_service.user_info.vo.request.RequestAddUserInfoVo;
 import back.vybz.user_info_service.user_info.vo.request.RequestDeleteUserInfoVo;
 import back.vybz.user_info_service.user_info.vo.request.RequestUpdateUserInfoVo;
 import back.vybz.user_info_service.user_info.vo.response.ResponseUserInfoVo;
+import back.vybz.user_info_service.user_info.vo.response.ResponseUserProfileVo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -82,4 +84,12 @@ public class UserInfoController {
         return new BaseResponseEntity<>(BaseResponseStatus.SUCCESS);
     }
 
+    @GetMapping("/profile/{userUuid}")
+    public BaseResponseEntity<ResponseUserProfileVo> getUserProfile(
+            @PathVariable("userUuid") String userUuid
+    ) {
+
+        ResponseUserProfileDto responseUserProfileDto = userInfoService.getUserProfileByUuid(userUuid);
+        return new BaseResponseEntity<>(responseUserProfileDto.toResponseUserProfileVo());
+    }
 }

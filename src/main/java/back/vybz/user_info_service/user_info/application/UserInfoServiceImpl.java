@@ -9,6 +9,7 @@ import back.vybz.user_info_service.user_info.dto.request.RequestAddUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestDeleteUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestUpdateUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.response.ResponseUserInfoDto;
+import back.vybz.user_info_service.user_info.dto.response.ResponseUserProfileDto;
 import back.vybz.user_info_service.user_info.infrastructure.UserInfoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserInfoServiceImpl implements UserInfoService {
+public class  UserInfoServiceImpl implements UserInfoService {
 
     private final UserInfoRepository userInfoRepository;
     private final UpdateUserInfoEventProducer updateUserInfoEventProducer;
@@ -91,5 +92,23 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfo.softDelete();
 
         deleteUserInfoEventProducer.sendUserInfoEvent(requestDeleteUserInfoDto.getUserUuid());
+    }
+
+    /**
+     * 사용자 프로필 이미지, 닉네임 조회
+     *
+     * @param userUuid
+     * @return
+     */
+    @Override
+    public ResponseUserProfileDto getUserProfileByUuid(String userUuid) {
+
+        UserInfo user = userInfoRepository.findByUserUuidAndDeletedFalse(userUuid)
+                .orElseThrow(() -> new BaseException(BaseResponseStatus.NO_EXIST_USER));
+
+        return ResponseUserProfileDto.builder()
+                .profileImageUrl(user.getProfileImageUrl())
+                .nickname(user.getNickname())
+                .build();
     }
 }
