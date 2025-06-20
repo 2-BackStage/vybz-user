@@ -18,7 +18,7 @@ public class UserInfoEventConsumer {
     private final UserInfoRepository userInfoRepository;
 
     @KafkaListener(
-            topics = "create-user-auth-1",
+            topics = "create-user-auth",
             groupId = "user-info-group",
             containerFactory = "userInfoKafkaListenerContainerFactory"
     )
