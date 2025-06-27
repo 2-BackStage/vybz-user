@@ -21,8 +21,9 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
     boolean existsByUserUuid(String userUuid);
 
     /**
-     * softdelete된 유저 중 프로필 이미지가 있는 유저 조회
+     * 유저 uuid에 해당하는 유저 정보 조회
+     * @param userUuid
      */
-    List<UserInfo> findAllByDeletedTrueAndProfileImageUrlIsNotNull();
+    List<UserInfo> findByUserUuidIn(List<String> userUuid);
 
 }

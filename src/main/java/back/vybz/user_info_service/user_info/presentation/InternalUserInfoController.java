@@ -4,10 +4,10 @@ import back.vybz.user_info_service.user_info.application.UserInfoService;
 import back.vybz.user_info_service.user_info.dto.request.UserSummary;
 import back.vybz.user_info_service.user_info.dto.response.ResponseUserInfoDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,6 +22,11 @@ public class InternalUserInfoController {
         return new UserSummary(responseUserInfoDto.getUserUuid(),
                                responseUserInfoDto.getNickname(),
                                responseUserInfoDto.getProfileImageUrl());
+    }
+
+    @PostMapping("/summary-bulk")
+    public Map<String, UserSummary> getUserSummaryBulk(@RequestBody List<String> userUuid) {
+        return userInfoService.getUserSummaryBulk(userUuid);
     }
 
 }

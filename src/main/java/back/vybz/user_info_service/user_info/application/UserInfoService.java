@@ -3,10 +3,12 @@ package back.vybz.user_info_service.user_info.application;
 import back.vybz.user_info_service.user_info.dto.request.RequestAddUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestDeleteUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestUpdateUserInfoDto;
+import back.vybz.user_info_service.user_info.dto.request.UserSummary;
 import back.vybz.user_info_service.user_info.dto.response.ResponseUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.response.ResponseUserProfileDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserInfoService {
 
@@ -38,6 +40,12 @@ public interface UserInfoService {
      * @param requestDeleteUserInfoDto
      */
     void deleteUserInfo(RequestDeleteUserInfoDto requestDeleteUserInfoDto);
+
+    /**
+     * 유저 uuid로 유저 요약 정보 조회
+     * @param userUuid
+     */
+    Map<String, UserSummary> getUserSummaryBulk(List<String> userUuid);
 
 
     /**

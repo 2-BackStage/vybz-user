@@ -8,7 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user_info")
+@Table(name = "user_info", indexes = {
+        @Index(name = "idx_user_info_user_uuid", columnList = "user_uuid", unique = true)
+})
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserInfo extends SoftDeletableEntity {

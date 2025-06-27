@@ -8,16 +8,17 @@ import back.vybz.user_info_service.user_info.domain.UserInfo;
 import back.vybz.user_info_service.user_info.dto.request.RequestAddUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestDeleteUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.request.RequestUpdateUserInfoDto;
+import back.vybz.user_info_service.user_info.dto.request.UserSummary;
 import back.vybz.user_info_service.user_info.dto.response.ResponseUserInfoDto;
 import back.vybz.user_info_service.user_info.dto.response.ResponseUserProfileDto;
 import back.vybz.user_info_service.user_info.infrastructure.UserInfoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -92,6 +93,24 @@ public class  UserInfoServiceImpl implements UserInfoService {
         userInfo.softDelete();
 
         deleteUserInfoEventProducer.sendUserInfoEvent(requestDeleteUserInfoDto.getUserUuid());
+    }
+
+    /**
+     * 버스커 uuid로 유저 요약 정보 조회
+     * @param userUuid
+     */
+    @Override
+    public Map<String, UserSummary> getUserSummaryBulk(List<String> userUuid) {
+        List<UserInfo> userInfo = userInfoRepository.findByUserUuidIn(userUuid);
+        return userInfo.stream()
+                .collect(Collectors.toMap(
+                        UserInfo::getUserUuid,
+                        user -> new UserSummary(
+                                user.getUserUuid(),
+                                user.getNickname(),
+                                user.getProfileImageUrl()
+                        )
+                ));
     }
 
     /**
